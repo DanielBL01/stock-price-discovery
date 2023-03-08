@@ -1,7 +1,7 @@
-package com.daniel.projects.kafkaconsumermicroservice.service;
+package com.daniel.projects.datastreamingmicroservice.service;
 
-import com.daniel.projects.kafkaconsumermicroservice.model.Test;
-import com.daniel.projects.kafkaconsumermicroservice.repository.KafkaRepository;
+import com.daniel.projects.datastreamingmicroservice.model.Test;
+import com.daniel.projects.datastreamingmicroservice.repository.KafkaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

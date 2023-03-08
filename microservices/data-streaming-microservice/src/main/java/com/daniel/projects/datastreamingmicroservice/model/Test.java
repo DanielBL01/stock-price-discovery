@@ -1,4 +1,4 @@
-package com.daniel.projects.kafkaconsumermicroservice.model;
+package com.daniel.projects.datastreamingmicroservice.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;

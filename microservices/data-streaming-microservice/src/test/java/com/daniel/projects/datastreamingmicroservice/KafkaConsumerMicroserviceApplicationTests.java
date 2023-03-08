@@ -1,4 +1,4 @@
-package com.daniel.projects.kafkaconsumermicroservice;
+package com.daniel.projects.datastreamingmicroservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

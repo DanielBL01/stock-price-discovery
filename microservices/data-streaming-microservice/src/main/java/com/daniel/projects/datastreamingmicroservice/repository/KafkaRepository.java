@@ -1,6 +1,6 @@
-package com.daniel.projects.kafkaconsumermicroservice.repository;
+package com.daniel.projects.datastreamingmicroservice.repository;
 
-import com.daniel.projects.kafkaconsumermicroservice.model.Test;
+import com.daniel.projects.datastreamingmicroservice.model.Test;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
