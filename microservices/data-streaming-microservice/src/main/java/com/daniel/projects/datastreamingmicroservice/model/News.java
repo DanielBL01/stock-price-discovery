@@ -1,6 +1,5 @@
 package com.daniel.projects.datastreamingmicroservice.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,13 +11,13 @@ public class News {
     @Id
     @GeneratedValue
     private Long id;
-    @JsonProperty
+    @Column(name = "title", nullable = false)
     private String title;
-    @JsonProperty
+    @Column(name = "summary", nullable = false)
     private String summary;
-    @JsonProperty
+    @Column(name = "link", nullable = false, unique = true)
     private String link;
-    @JsonProperty
+    @Column(name = "labels", nullable = false)
     private List<Integer> labels;
 
     public Long getId() {
@@ -39,5 +38,12 @@ public class News {
 
     public List<Integer> getLabels() {
         return labels;
+    }
+
+    public boolean hasAllFields() {
+        return title != null && !title.isEmpty() &&
+                summary != null && !summary.isEmpty() &&
+                link != null && !link.isEmpty() &&
+                labels != null && !labels.isEmpty();
     }
 }
