@@ -20,7 +20,7 @@ public class NewsConsumer {
     @KafkaListener(topics = "news", groupId = "news-consumer-group")
     public void listen(News news) {
         try {
-            if (!news.hasAllFields()) {
+            if (!news.hasAllRequiredFields()) {
                 throw new InvalidNewsException("FAILED: News object does not have all required fields");
             }
             newsService.saveNews(news);
