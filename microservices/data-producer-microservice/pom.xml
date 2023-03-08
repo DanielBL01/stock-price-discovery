@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.daniel.projects</groupId>
-	<artifactId>data-consumer-microservice</artifactId>
+	<artifactId>data-producer-microservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>data-consumer-microservice</name>
 	<description>Demo project for Spring Boot</description>

@@ -1,4 +1,4 @@
-package com.daniel.projects.dataconsumermicroservice;
+package com.daniel.projects.dataproducermicroservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
