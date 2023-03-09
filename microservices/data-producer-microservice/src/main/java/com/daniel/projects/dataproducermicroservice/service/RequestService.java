@@ -22,7 +22,7 @@ public class RequestService {
 
     public Mono<String> getData() {
         return webClient.get()
-                .uri("latest_headlines?countries=US")
+                .uri("/latest_headlines?countries=US&lang=en&topic=business")
                 .header("X-API-Key", API_KEY)
                 .retrieve()
                 .bodyToMono(String.class);
