@@ -7,7 +7,7 @@ import java.util.Optional;
 
 @Entity
 @Table(name = "news")
-public class News {
+public class Article {
 
     @Id
     @GeneratedValue
@@ -20,7 +20,8 @@ public class News {
     private String summary;
     @Column(name = "url", nullable = false, unique = true)
     private String url;
-    @Column(name = "labels", nullable = false)
+    // Right now make the labels nullable. But in the future, all news articles should be labelled.
+    @Column(name = "labels")
     private List<Integer> labels;
 
     public Long getId() {
