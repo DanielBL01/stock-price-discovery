@@ -1,7 +1,7 @@
 package com.daniel.projects.datastreamingmicroservice;
 
 import com.daniel.projects.datastreamingmicroservice.exception.InvalidNewsException;
-import com.daniel.projects.datastreamingmicroservice.model.News;
+import com.daniel.projects.datastreamingmicroservice.model.Article;
 import com.daniel.projects.datastreamingmicroservice.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -17,16 +17,16 @@ public class NewsConsumer {
         this.newsService = newsService;
     }
 
-    @KafkaListener(topics = "news", groupId = "news-consumer-group")
-    public void listen(News news) {
+    @KafkaListener(topics = "articles", groupId = "article-consumer-group")
+    public void listen(Article article) {
         try {
-            if (!news.hasAllRequiredFields()) {
-                throw new InvalidNewsException("FAILED: News object does not have all required fields");
+            if (!article.hasAllRequiredFields()) {
+                throw new InvalidNewsException("FAILED: Article object does not have all required fields");
             }
-            newsService.saveNews(news);
-            System.out.println("SUCCESS: Got news titled: " + news.getTitle() + " from topic news");
+            newsService.saveArticle(article);
+            System.out.println("SUCCESS: Got article titled: " + article.getTitle() + " from topic articles");
         } catch (Exception e) {
-            System.out.println("FAILED: with unknown error: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

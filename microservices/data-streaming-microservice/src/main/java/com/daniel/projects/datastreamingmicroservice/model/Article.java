@@ -1,28 +1,35 @@
 package com.daniel.projects.datastreamingmicroservice.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @Entity
-@Table(name = "news")
+@Table(name = "articles")
 public class Article {
 
     @Id
     @GeneratedValue
     private Long id;
-    @Column(name = "title", nullable = false, unique = true)
+    @Column(name = "title", nullable = false, unique = false)
+    @JsonProperty("title")
     private String title;
-    @Column(name = "author")
+    @Column(name = "author", nullable = true)
+    @JsonProperty("author")
     private String author;
-    @Column(name = "summary", nullable = false, unique = true)
+    @Column(name = "summary", nullable = false, unique = false, length = 1000)
+    @JsonProperty("summary")
     private String summary;
-    @Column(name = "url", nullable = false, unique = true)
-    private String url;
+    @Column(name = "link", nullable = false, unique = false)
+    @JsonProperty("link")
+    private String link;
+    @Column(name = "published_date", nullable = false)
+    @JsonProperty("published_date")
+    private String publishedDate;
     // Right now make the labels nullable. But in the future, all news articles should be labelled.
-    @Column(name = "labels")
-    private List<Integer> labels;
+    // @Column(name = "labels")
+    // private List<Integer> labels;
 
     public Long getId() {
         return id;
@@ -43,18 +50,18 @@ public class Article {
         return summary;
     }
 
-    public String getUrl() {
-        return url;
+    public String getLink() {
+        return link;
     }
 
-    public List<Integer> getLabels() {
-        return labels;
+    public String getPublishedDate() {
+        return publishedDate;
     }
 
     public boolean hasAllRequiredFields() {
         return title != null && !title.isEmpty() &&
                 summary != null && !summary.isEmpty() &&
-                url != null && !url.isEmpty() &&
-                labels != null && !labels.isEmpty();
+                link != null && !link.isEmpty() &&
+                publishedDate != null && !publishedDate.isEmpty();
     }
 }

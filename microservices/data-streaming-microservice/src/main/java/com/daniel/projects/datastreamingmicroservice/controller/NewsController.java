@@ -1,6 +1,6 @@
 package com.daniel.projects.datastreamingmicroservice.controller;
 
-import com.daniel.projects.datastreamingmicroservice.model.News;
+import com.daniel.projects.datastreamingmicroservice.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/news")
+@RequestMapping(value = "/articles")
 public class NewsController {
 
-    private final KafkaTemplate<String, News> kafkaTemplate;
-    private final String TOPIC_NAME = "news";
+    private final KafkaTemplate<String, Article> kafkaTemplate;
+    private final String TOPIC_NAME = "articles";
 
     @Autowired
     public NewsController(KafkaTemplate kafkaTemplate) {
@@ -21,7 +21,7 @@ public class NewsController {
     }
 
     @PostMapping
-    public void sendNews(@RequestBody News news) {
-        kafkaTemplate.send(TOPIC_NAME, news);
+    public void sendNews(@RequestBody Article article) {
+        kafkaTemplate.send(TOPIC_NAME, article);
     }
 }
