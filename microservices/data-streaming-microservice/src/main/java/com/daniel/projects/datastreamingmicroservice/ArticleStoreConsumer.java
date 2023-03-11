@@ -8,17 +8,18 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NewsConsumer {
+public class ArticleStoreConsumer {
 
     private final NewsService newsService;
 
     @Autowired
-    public NewsConsumer(NewsService newsService) {
+    public ArticleStoreConsumer(NewsService newsService) {
         this.newsService = newsService;
     }
 
-    @KafkaListener(topics = "articles", groupId = "article-consumer-group")
-    public void listen(Article article) {
+    @KafkaListener(topics = "articles", groupId = "article-store-group",
+            containerFactory = "kafkaListenerContainerFactory")
+    public void consumeAndStore(Article article) {
         try {
             if (!article.hasAllRequiredFields()) {
                 throw new InvalidNewsException("FAILED: Article object does not have all required fields");
