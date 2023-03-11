@@ -1,7 +1,7 @@
 package com.daniel.projects.datastreamingmicroservice.controller;
 
 import com.daniel.projects.datastreamingmicroservice.ArticleSSEConsumer;
-import com.daniel.projects.datastreamingmicroservice.model.Article;
+import com.daniel.projects.datastreamingmicroservice.model.ArticleSSE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
@@ -22,7 +22,7 @@ public class ArticleStreamController {
     }
 
     @GetMapping(value = "/articles", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<ServerSentEvent<Article>> getArticles() {
+    public Flux<ServerSentEvent<ArticleSSE>> getArticleStreams() {
         return articleSSEConsumer.getFlux();
     }
 }

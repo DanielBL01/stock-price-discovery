@@ -1,6 +1,7 @@
 package com.daniel.projects.datastreamingmicroservice;
 
 import com.daniel.projects.datastreamingmicroservice.model.Article;
+import com.daniel.projects.datastreamingmicroservice.model.ArticleSSE;
 import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -10,7 +11,7 @@ import reactor.core.publisher.Sinks;
 @Component
 public class ArticleSSEConsumer {
 
-    private final Sinks.Many<Article> sink;
+    private final Sinks.Many<ArticleSSE> sink;
 
     public ArticleSSEConsumer() {
         this.sink = Sinks.many().multicast().onBackpressureBuffer();
@@ -19,14 +20,21 @@ public class ArticleSSEConsumer {
     @KafkaListener(topics = "articles", groupId = "article-sse-group",
             containerFactory = "sseListenerContainerFactory")
     public void consumeAndSSE(Article article) {
-        System.out.println("SSE-GROUP SUCCESS: " + article.getTitle());
-        sink.tryEmitNext(article);
+        System.out.println("SSE SUCCESS: " + article.getTitle());
+        ArticleSSE articleSSE = new ArticleSSE(
+                article.getTitle(),
+                article.getAuthor(),
+                article.getSummary(),
+                article.getLink(),
+                article.getPublishedDate()
+        );
+        sink.tryEmitNext(articleSSE);
     }
 
-    public Flux<ServerSentEvent<Article>> getFlux() {
+    public Flux<ServerSentEvent<ArticleSSE>> getFlux() {
         return sink.asFlux()
-                .map(article -> ServerSentEvent.builder(article)
-                        .event("article")
+                .map(articleSSE -> ServerSentEvent.builder(articleSSE)
+                        .event("article stream")
                         .build());
     }
 }

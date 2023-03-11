@@ -1,17 +1,12 @@
 package com.daniel.projects.datastreamingmicroservice.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
 
 import java.util.Optional;
 
-@Entity
-@Table(name = "articles")
-public class Article {
+public class ArticleSSE {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @Column(name = "title", nullable = false, unique = false)
     @JsonProperty("title")
     private String title;
@@ -27,12 +22,17 @@ public class Article {
     @Column(name = "published_date", nullable = false, unique = false)
     @JsonProperty("published_date")
     private String publishedDate;
-    // Right now make the labels nullable. But in the future, all news articles should be labelled.
-    // @Column(name = "labels")
-    // private List<Integer> labels;
 
-    public Long getId() {
-        return id;
+    public ArticleSSE(String title, Optional<String> author, String summary, String link, String publishedDate) {
+        this.title = title;
+        this.summary = summary;
+        this.link = link;
+        this.publishedDate = publishedDate;
+        if (author.isPresent()) {
+            this.author = author.get();
+        } else {
+            this.author = null;
+        }
     }
 
     public String getTitle() {

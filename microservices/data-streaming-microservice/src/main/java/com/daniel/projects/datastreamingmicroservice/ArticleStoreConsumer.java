@@ -25,7 +25,7 @@ public class ArticleStoreConsumer {
                 throw new InvalidNewsException("FAILED: Article object does not have all required fields");
             }
             newsService.saveArticle(article);
-            System.out.println("SUCCESS: Got article titled: " + article.getTitle() + " from topic articles");
+            System.out.println("SUCCESS: Consumed and Stored: " + article.getTitle() + " from topic articles");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
