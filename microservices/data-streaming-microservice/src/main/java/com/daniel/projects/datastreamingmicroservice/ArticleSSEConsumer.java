@@ -1,6 +1,7 @@
 package com.daniel.projects.datastreamingmicroservice;
 
 import com.daniel.projects.datastreamingmicroservice.model.Article;
+import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
@@ -22,7 +23,10 @@ public class ArticleSSEConsumer {
         sink.tryEmitNext(article);
     }
 
-    public Flux<Article> getFlux() {
-        return sink.asFlux();
+    public Flux<ServerSentEvent<Article>> getFlux() {
+        return sink.asFlux()
+                .map(article -> ServerSentEvent.builder(article)
+                        .event("article")
+                        .build());
     }
 }
