@@ -4,6 +4,7 @@ import com.daniel.projects.datastreamingmicroservice.exception.InvalidNewsExcept
 import com.daniel.projects.datastreamingmicroservice.model.Article;
 import com.daniel.projects.datastreamingmicroservice.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -22,12 +23,16 @@ public class ArticleStoreConsumer {
     public void consumeAndStore(Article article) {
         try {
             if (!article.hasAllRequiredFields()) {
-                throw new InvalidNewsException("FAILED: Article object does not have all required fields");
+                throw new InvalidNewsException("Article object does not have all required fields");
             }
             newsService.saveArticle(article);
-            System.out.println("SUCCESS: Consumed and Stored: " + article.getTitle() + " from topic articles");
+            System.out.println("\nSUCCESS: Consumed and Stored: " + article.getTitle() + " from topic articles\n");
+        } catch (InvalidNewsException e) {
+            System.out.println("\nFAILED with InvalidNewsException: " + e.getMessage() + "\n");
+        } catch(DataIntegrityViolationException e) {
+            System.out.println("\nFAILED with DataIntegrityViolationException: " + e.getMessage() + "\n");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("\nFAILED with unknown exception: " + e.getMessage() + "\n");
         }
     }
 }

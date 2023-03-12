@@ -3,6 +3,7 @@ package com.daniel.projects.datastreamingmicroservice.service;
 import com.daniel.projects.datastreamingmicroservice.model.Article;
 import com.daniel.projects.datastreamingmicroservice.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,7 +16,7 @@ public class NewsService {
         this.newsRepository = newsRepository;
     }
 
-    public Article saveArticle(Article article) {
-        return newsRepository.save(article);
+    public void saveArticle(Article article) throws DataIntegrityViolationException {
+        newsRepository.save(article);
     }
 }

@@ -7,19 +7,19 @@ import java.util.Optional;
 
 public class ArticleSSE {
 
-    @Column(name = "title", nullable = false, unique = false)
+    @Column(name = "title", nullable = false)
     @JsonProperty("title")
     private String title;
-    @Column(name = "author", nullable = true, unique = false)
+    @Column(name = "author")
     @JsonProperty("author")
     private String author;
-    @Column(name = "summary", nullable = false, unique = false, length = 1000)
+    @Column(name = "summary", nullable = false, length = 1000)
     @JsonProperty("summary")
     private String summary;
-    @Column(name = "link", nullable = false, unique = false)
+    @Column(name = "link", nullable = false, unique = true)
     @JsonProperty("link")
     private String link;
-    @Column(name = "published_date", nullable = false, unique = false)
+    @Column(name = "published_date", nullable = false)
     @JsonProperty("published_date")
     private String publishedDate;
 

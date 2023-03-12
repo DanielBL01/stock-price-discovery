@@ -21,8 +21,13 @@ gives users a clean, simplistic user interface which information can be easily c
 - Java
 - Spring Boot
 - Apache Kafka
+	- Data pipeline to move data producers from one RESTful API to stream from another RESTful API
+- Redis
+	- Currently using Redis as a "link" field cache to avoid sending duplicate articles referencing the same link in article sse data
 - Google Guava
+	- Provides richer APIs for common Java libraries
 - Server-Sent Events (SSE)
+	- Unidirectional protocol (server to client) to enable real-time communication
 ### Cloud/Infrastructure
 - Docker
 ### Dev Tools
