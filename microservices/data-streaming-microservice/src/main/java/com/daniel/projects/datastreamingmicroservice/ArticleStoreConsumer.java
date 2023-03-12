@@ -26,13 +26,13 @@ public class ArticleStoreConsumer {
                 throw new InvalidNewsException("Article object does not have all required fields");
             }
             newsService.saveArticle(article);
-            System.out.println("\nSUCCESS: Consumed and Stored: " + article.getTitle() + " from topic articles\n");
+            System.out.println("\nINFO: Consumed and Stored: " + article.getTitle() + " from topic articles\n");
         } catch (InvalidNewsException e) {
-            System.out.println("\nFAILED with InvalidNewsException: " + e.getMessage() + "\n");
+            System.out.println("\nFAILED: with InvalidNewsException: " + e.getMessage() + "\n");
         } catch(DataIntegrityViolationException e) {
-            System.out.println("\nFAILED with DataIntegrityViolationException: " + e.getMessage() + "\n");
+            System.out.println("\nFAILED: with DataIntegrityViolationException: " + e.getMessage() + "\n");
         } catch (Exception e) {
-            System.out.println("\nFAILED with unknown exception: " + e.getMessage() + "\n");
+            System.out.println("\nFAILED: with unknown exception: " + e.getMessage() + "\n");
         }
     }
 }
