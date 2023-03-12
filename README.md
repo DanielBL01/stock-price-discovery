@@ -32,4 +32,5 @@ gives users a clean, simplistic user interface which information can be easily c
 - Docker
 ### Dev Tools
 - Vite
+	- Better than create-react-app as it uses esbuild (written in Go) for better performance and offers a more minimal template to create single page applications
 - Maven
