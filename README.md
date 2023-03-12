@@ -21,6 +21,7 @@ gives users a clean, simplistic user interface which information can be easily c
 - Java
 - Spring Boot
 - Apache Kafka
+- Google Guava
 - Server-Sent Events (SSE)
 ### Cloud/Infrastructure
 - Docker

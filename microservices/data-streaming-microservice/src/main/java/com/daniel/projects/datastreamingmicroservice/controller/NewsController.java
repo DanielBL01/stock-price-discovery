@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/articles")
 public class NewsController {
 
+    private static final String TOPIC_NAME = "articles";
     private final KafkaTemplate<String, Article> kafkaTemplate;
-    private final String TOPIC_NAME = "articles";
 
     @Autowired
     public NewsController(KafkaTemplate kafkaTemplate) {

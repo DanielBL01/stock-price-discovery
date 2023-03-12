@@ -1,6 +1,7 @@
 package com.daniel.projects.datastreamingmicroservice.configuration;
 
 import com.daniel.projects.datastreamingmicroservice.deserializer.CustomArticleDeserializer;
+import com.google.common.collect.Maps;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
@@ -11,17 +12,16 @@ import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
 public class KafkaConsumerConfig {
 
-    private final String CONSUMER_BOOTSTRAP_SERVERS = "localhost:9092";
+    private static final String CONSUMER_BOOTSTRAP_SERVERS = "localhost:9092";
 
     @Bean
     public Map<String, Object> consumerConfigs() {
-        Map<String, Object> props = new HashMap<>();
+        Map<String, Object> props = Maps.newHashMap();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, CONSUMER_BOOTSTRAP_SERVERS);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
