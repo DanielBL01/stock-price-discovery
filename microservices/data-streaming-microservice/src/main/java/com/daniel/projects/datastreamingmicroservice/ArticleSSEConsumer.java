@@ -34,7 +34,6 @@ public class ArticleSSEConsumer {
     public Flux<ServerSentEvent<ArticleSSE>> getFlux() {
         return sink.asFlux()
                 .map(articleSSE -> ServerSentEvent.builder(articleSSE)
-                        .event("article stream")
                         .build());
     }
 }
