@@ -9,7 +9,14 @@ interface ArticleSSE {
 }
 
 export default function ClientListComponent() {
-    const [articles, setArticles] = useState<ArticleSSE[]>([]);
+    const [articles, setArticles] = useState<ArticleSSE[]>(() => {
+        const savedArticle = localStorage.getItem("articleSSE");
+        return savedArticle ? JSON.parse(savedArticle) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("articleSSE", JSON.stringify(articles));
+    }, [articles]);
 
     useEffect(() => {
         const eventSource = new EventSource("http://localhost:8080/stream/articles");
