@@ -22,6 +22,7 @@ gives users a clean, simplistic user interface which information can be easily c
 - Spring Boot
 - Apache Kafka
 	- Data pipeline to move data producers from one RESTful API to stream from another RESTful API
+- PostgreSQL
 - Redis
 	- Currently using Redis as a "link" field cache to avoid sending duplicate articles referencing the same link in article sse data
 - Google Guava
@@ -30,6 +31,7 @@ gives users a clean, simplistic user interface which information can be easily c
 	- Unidirectional protocol (server to client) to enable real-time communication
 ### Cloud/Infrastructure
 - Docker
+	- Currently have docker-compose.yml for Apache Zookeeper, Broker, Redis and PostgreSQL. NOTE to self: Ran into headaches because local postgres server was running. Make sure when using docker, there are no local counterparts running as a background process locally on computer
 ### Dev Tools
 - Vite
 	- Better than create-react-app as it uses esbuild (written in Go) for better performance and offers a more minimal template to create single page applications
