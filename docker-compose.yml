@@ -28,5 +28,17 @@ services:
 
   redis:
     image: redis
+    container_name: redis-cache
     ports:
       - "6379:6379"
+
+  postgresql:
+    image: postgres
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: stockpricediscovery
+      POSTGRES_PASSWORD: stockpricediscovery
+      POSTGRES_DB: stockpricediscovery
+    ports:
+      - "5432:5432"
