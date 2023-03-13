@@ -31,7 +31,7 @@ gives users a clean, simplistic user interface which information can be easily c
 	- Unidirectional protocol (server to client) to enable real-time communication
 ### Cloud/Infrastructure
 - Docker
-	- Currently have docker-compose.yml for Apache Zookeeper, Broker, Redis and PostgreSQL. NOTE to self: Ran into headaches because local postgres server was running. Make sure when using docker, there are no local counterparts running as a background process locally on computer
+	- Currently have docker-compose.yml for Apache Zookeeper, Broker, Redis and PostgreSQL. NOTE to self: Ran into headaches debugging because local postgres server was running and error logs weren't clear about this. Make sure when using docker, there are no locally running counterparts to your Docker containers
 ### Dev Tools
 - Vite
 	- Better than create-react-app as it uses esbuild (written in Go) for better performance and offers a more minimal template to create single page applications
